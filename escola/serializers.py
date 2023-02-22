@@ -16,6 +16,12 @@ class AlunoSerializer(serializers.ModelSerializer):
         return nome
 
     @staticmethod
+    def validate_rg(rg):
+        if len(rg) != 9:
+            raise serializers.ValidationError("O RG deve ter 9 dígitos.")
+        return rg
+
+    @staticmethod
     def validate_cpf(cpf):
         if len(cpf) != 11:
             raise serializers.ValidationError("O CPF deve ter 11 dígitos.")
