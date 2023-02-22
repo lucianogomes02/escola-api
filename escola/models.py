@@ -16,6 +16,20 @@ class Nivel(Enum):
         )
 
 
+class Periodo(Enum):
+    M: str = "Matutino"
+    V: str = "Vespertino"
+    N: str = "Noturno"
+
+    @classmethod
+    def opcoes(cls):
+        return (
+            ("M", cls.M),
+            ("V", cls.V),
+            ("N", cls.N),
+        )
+
+
 class Aluno(models.Model):
     nome = models.CharField(max_length=30)
     rg = models.CharField(max_length=9)
@@ -35,3 +49,11 @@ class Curso(models.Model):
 
     def __str__(self):
         return self.descricao
+
+
+class Matricula(models.Model):
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
+    periodo = models.CharField(
+        max_length=1, choices=Periodo.opcoes(), blank=False, null=False, default="M"
+    )
