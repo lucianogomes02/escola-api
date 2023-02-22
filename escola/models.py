@@ -3,7 +3,7 @@ from enum import Enum
 
 
 class Nivel(Enum):
-    B: str = ("Básico",)
+    B: str = "Básico"
     I: str = "Intermediário"
     A: str = "Avançado"
 
