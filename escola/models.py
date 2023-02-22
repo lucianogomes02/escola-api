@@ -10,9 +10,9 @@ class Nivel(Enum):
     @classmethod
     def opcoes(cls):
         return (
-            ("B", cls.B),
-            ("I", cls.I),
-            ("A", cls.A),
+            ("B", cls.B.value),
+            ("I", cls.I.value),
+            ("A", cls.A.value),
         )
 
 
@@ -24,9 +24,9 @@ class Periodo(Enum):
     @classmethod
     def opcoes(cls):
         return (
-            ("M", cls.M),
-            ("V", cls.V),
-            ("N", cls.N),
+            ("M", cls.M.value),
+            ("V", cls.V.value),
+            ("N", cls.N.value),
         )
 
 
