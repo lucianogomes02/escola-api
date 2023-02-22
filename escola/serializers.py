@@ -8,6 +8,14 @@ class AlunoSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     @staticmethod
+    def validate_nome(nome):
+        if not nome.isalpha():
+            raise serializers.ValidationError(
+                "O nome não deve conter caractéres numéricos."
+            )
+        return nome
+
+    @staticmethod
     def validate_cpf(cpf):
         if len(cpf) != 11:
             raise serializers.ValidationError("O CPF deve ter 11 dígitos.")
