@@ -9,7 +9,7 @@ class AlunoSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def validate_nome(nome):
-        if not nome.isalpha():
+        if not all([palavra.isalpha() for palavra in nome.split(" ")]):
             raise serializers.ValidationError(
                 "O nome não deve conter caractéres numéricos."
             )
