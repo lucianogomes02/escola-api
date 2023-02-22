@@ -7,6 +7,12 @@ class AlunoSerializer(serializers.ModelSerializer):
         model = Aluno
         fields = "__all__"
 
+    @staticmethod
+    def validate_cpf(cpf):
+        if len(cpf) != 11:
+            raise serializers.ValidationError("O CPF deve ter 11 dígitos.")
+        return cpf
+
 
 class CursoSerializer(serializers.ModelSerializer):
     class Meta:
