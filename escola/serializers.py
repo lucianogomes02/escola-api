@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from escola.models import Aluno, Curso, Matricula
+from escola.validators import cpf_valido, nome_valido, rg_valido
 
 
 class AlunoSerializer(serializers.ModelSerializer):
@@ -8,24 +9,24 @@ class AlunoSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     @staticmethod
-    def validate_nome(nome):
-        if not all([palavra.isalpha() for palavra in nome.split(" ")]):
+    def validate(data):
+        if not nome_valido(data.get("nome", "")):
             raise serializers.ValidationError(
-                "O nome não deve conter caractéres numéricos."
+                {"nome": "O nome não deve conter caractéres numéricos."}
             )
-        return nome
-
-    @staticmethod
-    def validate_rg(rg):
-        if len(rg) != 9:
-            raise serializers.ValidationError("O RG deve ter 9 dígitos.")
-        return rg
-
-    @staticmethod
-    def validate_cpf(cpf):
-        if len(cpf) != 11:
-            raise serializers.ValidationError("O CPF deve ter 11 dígitos.")
-        return cpf
+        elif not rg_valido(data.get("rg", "")):
+            raise serializers.ValidationError(
+                {
+                    "rg": "O RG deve ter 9 dígitos e deve conter apenas carácteres númericos."
+                }
+            )
+        elif not cpf_valido(data.get("cpf", "")):
+            raise serializers.ValidationError(
+                {
+                    "cpf": "O CPF deve ter 11 dígitos e deve conter apenas carácteres númericos."
+                }
+            )
+        return data
 
 
 class CursoSerializer(serializers.ModelSerializer):
