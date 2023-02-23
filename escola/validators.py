@@ -10,5 +10,5 @@ def rg_valido(rg: str) -> bool:
 
 
 def cpf_valido(cpf: str) -> bool:
-    cpf_validator = CPF()
-    return cpf_validator.validate(cpf)
+    validador_de_cpf = CPF()
+    return validador_de_cpf.validate(cpf)
