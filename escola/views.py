@@ -27,6 +27,8 @@ class CursosViewSet(viewsets.ModelViewSet):
     """API de Cursos"""
 
     queryset = Curso.objects.all()
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    ordering_fields = ["descricao"]
     serializer_class = CursoSerializer
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]

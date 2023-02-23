@@ -18,6 +18,7 @@ class Cursos(admin.ModelAdmin):
     list_display_links = ("id", "codigo_curso")
     search_fields = ("codigo_curso",)
     list_per_page = 10
+    ordering = ("descricao",)
 
 
 admin.site.register(Curso, Cursos)
