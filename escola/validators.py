@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from validate_docbr import CPF
 
 
 def nome_valido(nome: str) -> bool:
@@ -10,4 +10,5 @@ def rg_valido(rg: str) -> bool:
 
 
 def cpf_valido(cpf: str) -> bool:
-    return len(cpf) == 11 and cpf.isdigit()
+    cpf_validator = CPF()
+    return cpf_validator.validate(cpf)

@@ -21,11 +21,7 @@ class AlunoSerializer(serializers.ModelSerializer):
                 }
             )
         elif not cpf_valido(data.get("cpf", "")):
-            raise serializers.ValidationError(
-                {
-                    "cpf": "O CPF deve ter 11 dígitos e deve conter apenas carácteres númericos."
-                }
-            )
+            raise serializers.ValidationError({"cpf": "Número de CPF inválido."})
         return data
 
 
