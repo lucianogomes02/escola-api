@@ -1,6 +1,7 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, filters
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
 from escola.models import Aluno, Curso, Matricula
 from escola.serializers import (
     AlunoSerializer,
@@ -15,6 +16,8 @@ class AlunosViewSet(viewsets.ModelViewSet):
     """API de Alunos"""
 
     queryset = Aluno.objects.all()
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    ordering_fields = ["nome"]
     serializer_class = AlunoSerializer
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
