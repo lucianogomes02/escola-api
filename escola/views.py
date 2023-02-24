@@ -1,5 +1,6 @@
-from rest_framework import viewsets, generics, filters
+from rest_framework import viewsets, generics, filters, status
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.response import Response
 from escola.models import Aluno, Curso, Matricula
 from escola.serializers import (
     AlunoSerializer,
@@ -23,6 +24,15 @@ class AlunosViewSet(viewsets.ModelViewSet):
     search_fields = ["nome", "cpf"]
     serializer_class = AlunoSerializer
 
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = Response(serializer.data, status=status.HTTP_201_CREATED)
+            id = str(serializer.data.get("id"))
+            response["Location"] = request.build_absolute_uri() + id
+            return response
+
 
 class CursosViewSet(viewsets.ModelViewSet):
     """API de Cursos"""
@@ -31,6 +41,15 @@ class CursosViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     ordering_fields = ["descricao"]
     serializer_class = CursoSerializer
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = Response(serializer.data, status=status.HTTP_201_CREATED)
+            id = str(serializer.data.get("id"))
+            response["Location"] = request.build_absolute_uri() + id
+            return response
 
 
 class MatriculasViewSet(viewsets.ModelViewSet):
