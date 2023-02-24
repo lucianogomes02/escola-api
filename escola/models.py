@@ -35,6 +35,7 @@ class Aluno(models.Model):
     rg = models.CharField(max_length=9)
     cpf = models.CharField(max_length=11, unique=True)
     data_nascimento = models.DateField()
+    foto = models.ImageField(blank=True)
 
     def __str__(self):
         return self.nome
