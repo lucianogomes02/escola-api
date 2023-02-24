@@ -17,6 +17,7 @@ validate-docbr = "^1.10.0"
 faker = "^17.0.0"
 django-cors-headers = "^3.13.0"
 pillow = "^9.4.0"
+django-admin-honeypot = {git = "https://github.com/dmpayton/django-admin-honeypot.git", rev = "develop"}
 
 
 [build-system]

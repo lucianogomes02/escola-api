@@ -19,6 +19,7 @@ router.register("matriculas", MatriculasViewSet, basename="Matriculas")
 
 
 urlpatterns = [
+    path("admin/", include("admin_honeypot.urls", namespace="admin_honeypot")),
     path("controle-api/", admin.site.urls),
     path("", include(router.urls)),
     path("alunos/<int:pk>/matriculas", ListaMatriculasAluno.as_view()),
