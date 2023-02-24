@@ -1,6 +1,6 @@
 from rest_framework import viewsets, generics, filters
 from rest_framework.authentication import BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
 from django_filters.rest_framework import DjangoFilterBackend
 from escola.models import Aluno, Curso, Matricula
 from escola.serializers import (
@@ -25,7 +25,7 @@ class AlunosViewSet(viewsets.ModelViewSet):
     search_fields = ["nome", "cpf"]
     serializer_class = AlunoSerializer
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
 
 
 class CursosViewSet(viewsets.ModelViewSet):
@@ -36,7 +36,7 @@ class CursosViewSet(viewsets.ModelViewSet):
     ordering_fields = ["descricao"]
     serializer_class = CursoSerializer
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
 
 
 class MatriculasViewSet(viewsets.ModelViewSet):
@@ -45,7 +45,7 @@ class MatriculasViewSet(viewsets.ModelViewSet):
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
 
 
 class ListaMatriculasAluno(generics.ListAPIView):
@@ -57,7 +57,7 @@ class ListaMatriculasAluno(generics.ListAPIView):
 
     serializer_class = ListaMatriculasAlunoSerializer
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
 
 
 class ListaAlunosDoCurso(generics.ListAPIView):
@@ -69,4 +69,4 @@ class ListaAlunosDoCurso(generics.ListAPIView):
 
     serializer_class = ListaAlunosDoCursoSerializer
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
