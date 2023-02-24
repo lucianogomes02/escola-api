@@ -15,6 +15,7 @@ django-filter = "^22.1"
 black = "^23.1.0"
 validate-docbr = "^1.10.0"
 faker = "^17.0.0"
+django-cors-headers = "^3.13.0"
 
 
 [build-system]
