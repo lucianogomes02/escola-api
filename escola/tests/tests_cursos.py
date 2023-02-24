@@ -9,9 +9,9 @@ class CursosTestCase(APITestCase):
     def setUp(self):
         self.list_url = reverse("Cursos-list")
         self.user = User.objects.create_superuser(
-            email="asdf@gmail.com",
-            password="hiwa_asdf",
-            username="smile as we go ahead",
+            email="test@gmail.com",
+            password="1234567",
+            username="usuario teste",
         )
         self.client.force_authenticate(self.user)
         self.primeiro_curso = Curso.objects.create(
