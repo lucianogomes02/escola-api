@@ -42,7 +42,7 @@ class CursosViewSet(viewsets.ModelViewSet):
     ordering_fields = ["descricao"]
     serializer_class = CursoSerializer
 
-    def create(self, request):
+    def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
