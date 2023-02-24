@@ -18,6 +18,7 @@ faker = "^17.0.0"
 django-cors-headers = "^3.13.0"
 pillow = "^9.4.0"
 django-admin-honeypot = {git = "https://github.com/dmpayton/django-admin-honeypot.git", rev = "develop"}
+drf-yasg = "^1.21.5"
 
 
 [build-system]
