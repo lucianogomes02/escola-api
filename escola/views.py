@@ -41,6 +41,7 @@ class CursosViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     ordering_fields = ["descricao"]
     serializer_class = CursoSerializer
+    http_method_names = ["get", "post", "put", "patch"]
 
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)

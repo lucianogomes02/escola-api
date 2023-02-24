@@ -31,3 +31,12 @@ class CursosTestCase(APITestCase):
         response = self.client.post(self.list_url, data=data)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_delete_curso(self):
+        response = self.client.delete("/cursos/1/")
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def test_put_curso(self):
+        data = {"codigo_curso": "CTT1", "descricao": "Curso Teste 1 Att", "nivel": "I"}
+        response = self.client.put("/cursos/1/", data=data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
